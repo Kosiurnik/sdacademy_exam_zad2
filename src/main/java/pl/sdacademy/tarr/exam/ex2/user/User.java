@@ -1,8 +1,15 @@
 package pl.sdacademy.tarr.exam.ex2.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import pl.sdacademy.tarr.exam.ex2.task.Task;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Data
 @Table(name = "USER")
 public class User {
 
@@ -12,22 +19,12 @@ public class User {
 
 	private String name;
 
-
-	public long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	@JsonIgnore
+	@OneToMany(
+			fetch = FetchType.EAGER,
+			cascade = CascadeType.ALL,
+			mappedBy = "user")
+	private List<Task> tasks = new ArrayList<>();
 
 
 	@Override
