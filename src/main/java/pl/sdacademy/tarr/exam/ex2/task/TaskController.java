@@ -42,13 +42,13 @@ public class TaskController {
         return taskMapper.toDTOs(tasks);
     }
 
-    @GetMapping("/tasks/user/{userId}/{status}")
+    @GetMapping("/tasks/user/{userId}/status/{status}")
     public List<TaskDTO> getUserTasksByStatus(@PathVariable TaskStatus status, @PathVariable long userId) {
         List<Task> tasks = taskService.getUserTasksByStatus(status,userId);
         return taskMapper.toDTOs(tasks);
     }
 
-    @GetMapping("/tasks/user/{userId}/{type}")
+    @GetMapping("/tasks/user/{userId}/type/{type}")
     public List<TaskDTO> getUserTasksByType(@PathVariable TaskType type, @PathVariable long userId) {
         List<Task> tasks = taskService.getUserTasksByType(type,userId);
         return taskMapper.toDTOs(tasks);
